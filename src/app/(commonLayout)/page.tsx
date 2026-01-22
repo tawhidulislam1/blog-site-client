@@ -1,7 +1,8 @@
-import { authClient } from "@/lib/auth-client";
+import { userService } from "@/user.services";
+import { cookies } from "next/headers";
 
 export default async function Home() {
-  const session = await authClient.getSession();
-  console.log(session);
+  const { data, error } = await userService.getSession();
+  console.log(data);
   return <h2>Hellow word</h2>;
 }
