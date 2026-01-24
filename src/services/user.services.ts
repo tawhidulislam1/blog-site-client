@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { env } from "./env";
+import { env } from "../env";
 
 const AUTH_URL = env.AUTH_URL;
 
