@@ -41,13 +41,21 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         const { data, error } = await authClient.signUp.email(value);
         if (error) {
           toast.error(error.message, { id: toastId });
-
-          toast.success("User Created Successfully", { id: toastId });
+          return;
         }
-      } catch (error) {}
-      toast.error("SOmething Went wrong, please try again", { id: toastId });
+        toast.success("User Created Successfully", { id: toastId });
+      } catch (err) {
+        console.log(err);
+        toast.error("SOmething Went wrong, please try again", { id: toastId });
+      }
     },
   });
+  const handleGoogleLogin = async () => {
+    const data = authClient.signIn.social({
+      provider: "google",
+      callbackURL: "http://localhost:3000/",
+    });
+  };
   return (
     <Card {...props}>
       <CardHeader>
@@ -140,9 +148,17 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
           </FieldGroup>
         </form>
       </CardContent>
-      <CardFooter className="flex justify-end">
-        <Button form="register-form" type="submit">
-          Submit
+      <CardFooter className="flex flex-col gap-3 w-full justify-end">
+        <Button className="w-full" form="register-form" type="submit">
+          Register
+        </Button>
+        <Button
+          className="w-full"
+          onClick={handleGoogleLogin}
+          variant="outline"
+          type="button"
+        >
+          Continue with Google
         </Button>
       </CardFooter>
     </Card>
