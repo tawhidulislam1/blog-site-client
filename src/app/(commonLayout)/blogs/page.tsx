@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 export default function blog() {
   const [data, setData] = useState();
   const [error, setError] = useState();
-  console.log(data);
+  // console.log(data);
   useEffect(() => {
     async () => {
       const { data , error } = await getBlogs();

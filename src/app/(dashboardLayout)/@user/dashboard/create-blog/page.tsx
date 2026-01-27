@@ -1,3 +1,9 @@
+import CreateBlogFormServer from "@/components/modules/user/createBlog/createBlogFormServer";
+
 export default function createBlogPage() {
-  return <h2>create Blog Page</h2>;
+  return (
+    <div>
+      <CreateBlogFormServer />
+    </div>
+  );
 }

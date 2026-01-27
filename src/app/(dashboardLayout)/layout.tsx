@@ -25,7 +25,7 @@ export default async function dashboardLayout({
 }) {
   const { data } = await userService.getSession();
   const userInfo = data.user;
-  console.log(userInfo);
+
   return (
     <SidebarProvider>
       <AppSidebar user={userInfo} />
