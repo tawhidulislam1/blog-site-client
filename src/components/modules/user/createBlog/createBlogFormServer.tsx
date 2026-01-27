@@ -11,6 +11,7 @@ import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { env } from "@/env";
+import { revalidateTag, updateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 const API_URL = env.API_URL;
@@ -37,7 +38,11 @@ export default function CreateBlogFormServer() {
       },
       body: JSON.stringify(blogData),
     });
-    console.log(res);
+    if (res.ok) {
+      revalidateTag("blogPosts", "max");
+        //   updateTag("bogPosts"); // user ether one  of them
+        
+    }
   };
   return (
     <Card className="w-2xl mx-auto">
